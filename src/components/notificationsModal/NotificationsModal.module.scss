@@ -1,3 +1,69 @@
+@import '../../constants/colors.module';
+@import '../../constants/variables.module';
+
 .Wrapper {
   position: absolute;
+  border: 2px solid $secondary-color;
+  padding: 1rem;
+  transform: translateX(-90%);
+  background-color: $primary-color;
+  width: $notifications-width;
+  height: $notifications-height;
+
+  .NotificationsHeader {
+    display: flex;
+    flex-direction: column;
+
+    .NotificationsHeaderInfo {
+      font-size: 24px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      .NotificationsCount {
+        background-color: $secondary-color;
+        color: $primary-color;
+        border-radius: 50%;
+        padding: 0.2em 0.6em;
+        font-size: 0.4em;
+        margin-left: 0.5em;
+        display: inline-block;
+        text-align: center;
+      }
+    }
+
+    .SectionButtonsContainer {
+      display: flex;
+      padding: 1rem;
+      justify-content: space-between;
+
+      .SectionButton {
+        flex-basis: 30%;
+        background-color: $primary-color;
+        color: $text-color;
+        padding: 0.5rem;
+        border: 2px solid $secondary-color;
+        border-radius: 2rem;
+        cursor: pointer;
+
+        &:hover {
+          transition-duration: 0.6s;
+          background-color: $text-color;
+          color: $primary-color;
+        }
+
+        &.CurrentSectionButton {
+          background-color: $secondary-color;
+          color: $primary-color;
+        }
+      }
+
+      .MarkButton {
+        border: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+    }
+  }
 }

@@ -13,6 +13,7 @@ export const Navbar = () => {
       <h1>Michał Wesołowski</h1>
       <div className={styles.Notifications}>
         <button
+          className={styles.NotificationButton}
           onClick={() => setIsNotificationsModalVisible(prev => !prev)}
           onMouseEnter={() => setIsNotificationsButtonOnHover(true)}
           onMouseLeave={() => setIsNotificationsButtonOnHover(false)}
@@ -20,12 +21,10 @@ export const Navbar = () => {
           <img src={bellIcon} alt="Notifications" />
         </button>
         {isNotificationsModalVisible ? (
-          <NotificationsModal />
+          <NotificationsModal notificationsCount={notificationsCount} setNotificationsCount={setNotificationsCount} />
         ) : (
           <span
-            className={`${styles.NotificationsCount} ${
-              isNotificationsButtonOnHover ? styles.NotificationsCountHover : ''
-            }`}
+            className={`${styles.NotificationsCount} ${isNotificationsButtonOnHover && styles.NotificationsCountHover}`}
           >
             {notificationsCount}
           </span>
