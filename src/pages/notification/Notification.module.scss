@@ -1,0 +1,10 @@
+@import '../../constants/colors.module';
+
+.Notification {
+  margin: 1rem auto;
+  border: 2px solid $secondary-color;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 2rem;
+  max-width: 60%;
+}

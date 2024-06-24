@@ -3,6 +3,8 @@ import { Notification as NotificationType } from '../../types/Types'
 import { Page } from '../page/Page'
 import { useEffect, useState } from 'react'
 import { useNotification } from '../../context/NotificationContext'
+import { DateToReadableFormat } from '../../helpers/DateToReadableFormat'
+import styles from './Notification.module.scss'
 
 type NotificationUrlParams = {
   id: NotificationType['id']
@@ -20,5 +22,15 @@ export const Notification = () => {
     }
   }, [id, getById])
 
-  return <Page title={`Notification ${notification?.type}`}>{notification && <h1>{notification.type}</h1>}</Page>
+  return (
+    <Page title={`Notification ${notification?.type}`}>
+      {notification && (
+        <div className={styles.Notification}>
+          <h1>{notification.type}</h1>
+          <p>{notification.message}</p>
+          <p>{DateToReadableFormat(notification.createdAt)}</p>
+        </div>
+      )}
+    </Page>
+  )
 }
