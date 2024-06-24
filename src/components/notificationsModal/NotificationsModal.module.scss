@@ -68,4 +68,9 @@
       }
     }
   }
+  .Content {
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 0.5rem;
+  }
 }

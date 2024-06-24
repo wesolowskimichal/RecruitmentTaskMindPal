@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import styles from './Navbar.module.scss'
 import bellIcon from '../../assets/bell-icon.svg'
 import { NotificationsModal } from '../notificationsModal/NotificationsModal'
@@ -10,9 +10,13 @@ export const Navbar = () => {
   const [isNotificationsModalVisible, setIsNotificationsModalVisible] = useState(false)
   const [isNotificationsButtonOnHover, setIsNotificationsButtonOnHover] = useState(false)
 
-  useEffect(() => {
-    setNotificationsCount(notifications.length)
+  const getUnreadNotificationsCount: number = useMemo(() => {
+    return notifications.filter(notification => !notification.isRead).length
   }, [notifications])
+
+  useEffect(() => {
+    setNotificationsCount(getUnreadNotificationsCount)
+  }, [notifications, getUnreadNotificationsCount])
 
   return (
     <header className={styles.Navbar}>
@@ -27,7 +31,7 @@ export const Navbar = () => {
           <img src={bellIcon} alt="Notifications" />
         </button>
         {isNotificationsModalVisible ? (
-          <NotificationsModal notificationsCount={notificationsCount} setNotificationsCount={setNotificationsCount} />
+          <NotificationsModal notificationsCount={notificationsCount} />
         ) : (
           <span
             className={`${styles.NotificationsCount} ${isNotificationsButtonOnHover && styles.NotificationsCountHover}`}

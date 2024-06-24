@@ -11,7 +11,7 @@ export const Notification = ({ notification }: NotificationProps) => {
   const { markAsReadById } = useNotification()
 
   return (
-    <div
+    <button
       className={classNames(styles.Notification, {
         [styles.Unread]: !notification.isRead
       })}
@@ -22,6 +22,6 @@ export const Notification = ({ notification }: NotificationProps) => {
         <p className={styles.NotificationDate}>{DateToReadableFormat(notification.createdAt)}</p>
       </div>
       {!notification.isRead && <button onClick={() => markAsReadById(notification.id)}></button>}
-    </div>
+    </button>
   )
 }

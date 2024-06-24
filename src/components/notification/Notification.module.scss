@@ -10,6 +10,9 @@
   justify-content: space-around;
   align-items: center;
   border-radius: 0.7rem;
+  background-color: $primary-color;
+  border: none;
+  border: 1px solid $text-color;
 
   img {
     aspect-ratio: 1/1;
@@ -25,11 +28,13 @@
 
     .NotificationMessage {
       height: 75%;
+      text-align: left;
     }
 
     .NotificationDate {
       flex-grow: 1;
       color: lighten($color: $text-color, $amount: 25);
+      text-align: left;
     }
   }
 

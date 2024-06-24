@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import styles from './NotificationsModal.module.scss'
 import markAllIcon from '../../assets/mark-all-icon.svg'
 import { NotificationModalType } from '../../types/Types'
@@ -7,10 +7,9 @@ import { useNotification } from '../../context/NotificationContext'
 
 type NotificationsModalProps = {
   notificationsCount: number
-  setNotificationsCount: Dispatch<SetStateAction<number>>
 }
 
-export const NotificationsModal = ({ notificationsCount, setNotificationsCount }: NotificationsModalProps) => {
+export const NotificationsModal = ({ notificationsCount }: NotificationsModalProps) => {
   const { notifications, markAllAsRead } = useNotification()
   const [section, setSection] = useState<NotificationModalType>('all')
 
@@ -42,8 +41,7 @@ export const NotificationsModal = ({ notificationsCount, setNotificationsCount }
           </button>
         </nav>
       </header>
-      {/* content */}
-      <div>
+      <div className={styles.Content}>
         {notificationsToShow.map((notification, index) => (
           <NotificationView key={index} notification={notification} />
         ))}
