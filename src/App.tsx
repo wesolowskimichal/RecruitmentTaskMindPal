@@ -1,14 +1,11 @@
-import { Navbar } from './components/navbar/Navbar'
-import { Ui } from './components/ui/Ui'
+import { RouterProvider } from 'react-router-dom'
 import { NotificationContextProvider } from './context/NotificationContext'
+import { router } from './router'
 
 function App() {
   return (
     <NotificationContextProvider>
-      <>
-        <Navbar />
-        <Ui />
-      </>
+      <RouterProvider router={router} />
     </NotificationContextProvider>
   )
 }

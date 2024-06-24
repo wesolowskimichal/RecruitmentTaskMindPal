@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styles from './Ui.module.scss'
 import { Notification } from '../../types/Types'
 import NotificationIcon from '../../assets/notification-icon.svg'

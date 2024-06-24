@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useNotification } from '../../context/NotificationContext'
 import { DateToReadableFormat } from '../../helpers/DateToReadableFormat'
 import { Notification as NotificationType } from '../../types/Types'
@@ -9,9 +10,16 @@ type NotificationProps = {
 }
 export const Notification = ({ notification }: NotificationProps) => {
   const { markAsReadById } = useNotification()
+  const navigate = useNavigate()
+
+  const handleOnNotificationClick = () => {
+    markAsReadById(notification.id)
+    navigate(`/notification/${notification.type}/${notification.id}`)
+  }
 
   return (
     <button
+      onClick={() => handleOnNotificationClick()}
       className={classNames(styles.Notification, {
         [styles.Unread]: !notification.isRead
       })}
@@ -21,7 +29,15 @@ export const Notification = ({ notification }: NotificationProps) => {
         <p className={styles.NotificationMessage}>{notification.message}</p>
         <p className={styles.NotificationDate}>{DateToReadableFormat(notification.createdAt)}</p>
       </div>
-      {!notification.isRead && <button onClick={() => markAsReadById(notification.id)}></button>}
+      {!notification.isRead && (
+        <span
+          className={styles.MarkAsReadButton}
+          onClick={e => {
+            e.stopPropagation()
+            markAsReadById(notification.id)
+          }}
+        ></span>
+      )}
     </button>
   )
 }

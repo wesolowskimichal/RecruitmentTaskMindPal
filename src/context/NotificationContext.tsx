@@ -5,6 +5,7 @@ type NotificationContextType = {
   notifications: Notification[]
   markAllAsRead: () => void
   markAsReadById: (id: string) => void
+  getById: (id: string) => Notification | null
   addNotification: (notification: Notification) => void
 }
 
@@ -12,6 +13,7 @@ const NotificationContext = createContext<NotificationContextType>({
   notifications: [],
   markAllAsRead: () => {},
   markAsReadById: (id: string) => {},
+  getById: (id: string) => null,
   addNotification: (notification: Notification) => {}
 })
 
@@ -41,12 +43,16 @@ export const NotificationContextProvider: FC<{ children: ReactNode }> = ({ child
     )
   }
 
+  const getById = (id: string): Notification | null => {
+    return notifications.find(notification => notification.id === id) ?? null
+  }
+
   const addNotification = (notification: Notification) => {
     setNotifications(prev => [...prev, notification])
   }
 
   return (
-    <NotificationContext.Provider value={{ notifications, markAllAsRead, markAsReadById, addNotification }}>
+    <NotificationContext.Provider value={{ notifications, markAllAsRead, markAsReadById, getById, addNotification }}>
       {children}
     </NotificationContext.Provider>
   )

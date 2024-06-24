@@ -38,7 +38,7 @@
     }
   }
 
-  button {
+  .MarkAsReadButton {
     cursor: pointer;
     width: 20px;
     height: 20px;
@@ -46,6 +46,7 @@
     background-color: $secondary-color;
     outline: none;
     border: none;
+    z-index: 2;
   }
 }
 
