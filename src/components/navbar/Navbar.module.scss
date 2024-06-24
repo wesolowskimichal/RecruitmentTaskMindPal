@@ -1,0 +1,53 @@
+@import '../../constants/variables.module';
+@import '../../constants/colors.module';
+
+.Navbar {
+  width: 100%;
+  height: $navbar-height;
+  background-color: $primary-color;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid $secondary-color;
+
+  h1 {
+    color: $secondary-color;
+  }
+
+  .Notifications {
+    position: relative;
+
+    .NotificationsCount {
+      position: absolute;
+      background-color: $primary-color;
+      transform: translate(-75%, -50%);
+      color: $secondary-color;
+      border-radius: 50%;
+      padding: 0.2rem;
+
+      &.NotificationsCountHover {
+        transition-duration: 0.5s;
+        color: $primary-color;
+        background-color: $secondary-color;
+      }
+    }
+
+    button {
+      padding: 0.4rem;
+      border-radius: 1rem;
+      background-color: $primary-color;
+      border: 2px solid $secondary-color;
+
+      &:hover {
+        cursor: pointer;
+        transition-duration: 0.5s;
+        background-color: $secondary-color;
+
+        img {
+          filter: invert(87%) sepia(9%) saturate(748%) hue-rotate(182deg) brightness(110%) contrast(91%);
+        }
+      }
+    }
+  }
+}

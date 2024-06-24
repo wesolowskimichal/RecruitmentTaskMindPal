@@ -1,9 +1,7 @@
+import { Navbar } from './components/navbar/Navbar'
+
 function App() {
-  return (
-    <>
-      <p>Recruitment Task</p>
-    </>
-  )
+  return <Navbar />
 }
 
 export default App
