@@ -1,6 +1,9 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useMemo, useState } from 'react'
 import styles from './NotificationsModal.module.scss'
 import markAllIcon from '../../assets/mark-all-icon.svg'
+import { NotificationModalType } from '../../types/Types'
+import { Notification as NotificationView } from '../notification/Notification'
+import { useNotification } from '../../context/NotificationContext'
 
 type NotificationsModalProps = {
   notificationsCount: number
@@ -8,7 +11,12 @@ type NotificationsModalProps = {
 }
 
 export const NotificationsModal = ({ notificationsCount, setNotificationsCount }: NotificationsModalProps) => {
-  const [section, setSection] = useState<'all' | 'unread'>('all')
+  const { notifications, markAllAsRead } = useNotification()
+  const [section, setSection] = useState<NotificationModalType>('all')
+
+  const notificationsToShow = useMemo(() => {
+    return section === 'all' ? notifications : notifications.filter(notification => !notification.isRead)
+  }, [notifications, section])
 
   return (
     <div className={styles.Wrapper}>
@@ -17,17 +25,29 @@ export const NotificationsModal = ({ notificationsCount, setNotificationsCount }
           Notifications <span className={styles.NotificationsCount}>{notificationsCount}</span>
         </p>
         <nav className={styles.SectionButtonsContainer}>
-          <button className={`${styles.SectionButton} ${section === 'all' && styles.CurrentSectionButton}`}>
+          <button
+            className={`${styles.SectionButton} ${section === 'all' && styles.CurrentSectionButton}`}
+            onClick={() => setSection('all')}
+          >
             All Notifications
           </button>
-          <button className={`${styles.SectionButton} ${section === 'unread' && styles.CurrentSectionButton}`}>
+          <button
+            className={`${styles.SectionButton} ${section === 'unread' && styles.CurrentSectionButton}`}
+            onClick={() => setSection('unread')}
+          >
             Unread Notifications
           </button>
-          <button className={`${styles.SectionButton} ${styles.MarkButton}`}>
+          <button className={`${styles.SectionButton} ${styles.MarkButton}`} onClick={() => markAllAsRead()}>
             <img src={markAllIcon} alt="Mark all as read" /> Mark all as read
           </button>
         </nav>
       </header>
+      {/* content */}
+      <div>
+        {notificationsToShow.map((notification, index) => (
+          <NotificationView key={index} notification={notification} />
+        ))}
+      </div>
     </div>
   )
 }

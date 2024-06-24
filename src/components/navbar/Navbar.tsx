@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Navbar.module.scss'
 import bellIcon from '../../assets/bell-icon.svg'
 import { NotificationsModal } from '../notificationsModal/NotificationsModal'
+import { useNotification } from '../../context/NotificationContext'
 
 export const Navbar = () => {
-  const [notificationsCount, setNotificationsCount] = useState(0)
+  const { notifications } = useNotification()
+  const [notificationsCount, setNotificationsCount] = useState(notifications.length)
   const [isNotificationsModalVisible, setIsNotificationsModalVisible] = useState(false)
   const [isNotificationsButtonOnHover, setIsNotificationsButtonOnHover] = useState(false)
+
+  useEffect(() => {
+    setNotificationsCount(notifications.length)
+  }, [notifications])
 
   return (
     <header className={styles.Navbar}>

@@ -1,0 +1,49 @@
+@import '../../constants/variables.module';
+@import '../../constants/colors.module';
+
+.Notification {
+  height: $notification-height;
+  display: flex;
+  gap: 1rem;
+  max-height: 80px;
+  padding: 0 1rem;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 0.7rem;
+
+  img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 3rem;
+  }
+
+  &ContentWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .NotificationMessage {
+      height: 75%;
+    }
+
+    .NotificationDate {
+      flex-grow: 1;
+      color: lighten($color: $text-color, $amount: 25);
+    }
+  }
+
+  button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $secondary-color;
+    outline: none;
+    border: none;
+  }
+}
+
+.Unread {
+  background-color: darken($color: $primary-color, $amount: 10);
+}
