@@ -70,7 +70,11 @@
   }
   .Content {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
+    flex-wrap: wrap;
     row-gap: 0.5rem;
+    overflow-y: scroll;
+    height: 100%;
+    height: calc($notifications-height - 160px);
   }
 }

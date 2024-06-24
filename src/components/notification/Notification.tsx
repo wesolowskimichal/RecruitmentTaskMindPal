@@ -14,7 +14,7 @@ export const Notification = ({ notification }: NotificationProps) => {
 
   const handleOnNotificationClick = () => {
     markAsReadById(notification.id)
-    navigate(`/notification/${notification.type}/${notification.id}`)
+    navigate(`/notification/${notification.id}`)
   }
 
   return (

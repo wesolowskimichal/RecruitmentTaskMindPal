@@ -3,9 +3,9 @@
 
 .Notification {
   height: $notification-height;
+  width: 100%;
   display: flex;
   gap: 1rem;
-  max-height: 80px;
   padding: 0 1rem;
   justify-content: space-around;
   align-items: center;
