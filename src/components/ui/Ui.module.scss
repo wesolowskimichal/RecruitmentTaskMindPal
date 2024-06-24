@@ -36,6 +36,10 @@
       height: 24px;
     }
 
+    input[type='file'] {
+      width: 100%;
+    }
+
     textarea {
       width: 100%;
       padding: 0.4rem;
@@ -43,6 +47,8 @@
 
     img {
       height: 250px;
+      max-width: 100%;
+      object-fit: cover;
       background-color: $primary-color;
     }
   }

@@ -48,7 +48,7 @@ export const NotificationContextProvider: FC<{ children: ReactNode }> = ({ child
   }
 
   const addNotification = (notification: Notification) => {
-    setNotifications(prev => [...prev, notification])
+    setNotifications(prev => [notification, ...prev])
   }
 
   return (

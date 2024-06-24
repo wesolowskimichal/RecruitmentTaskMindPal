@@ -107,7 +107,6 @@ export const Ui = () => {
         <h2>Image</h2>
         <img src={imagePreview ?? NotificationIcon} alt="Notification image" />
         <input type="file" onChange={handleImageChange} />
-        {image && <p>Selected file: {image.name}</p>}
       </div>
       <button onClick={() => handleAddNotification()} className={styles.AddButton}>
         ADD
