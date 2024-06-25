@@ -3,7 +3,7 @@ import styles from './Ui.module.scss'
 import { Notification } from '@/types/Types'
 import NotificationIcon from '@assets/notification-icon.svg'
 import { v4 as uuidv4 } from 'uuid'
-import { useNotification } from '@context/NotificationContext'
+import { useNotification } from '@/context/NotificationContext'
 import { FileToBase64 } from '@helpers/FileToBase64'
 import {
   Drawer,
