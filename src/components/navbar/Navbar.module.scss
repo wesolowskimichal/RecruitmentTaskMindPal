@@ -23,10 +23,18 @@
     .NotificationsCount {
       position: absolute;
       background-color: $primary-color;
-      transform: translate(-75%, -50%);
+      right: 0;
+      top: 0;
+      transform: translate(30%, -50%);
       color: $secondary-color;
       border-radius: 50%;
       padding: 0.2rem;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.85rem;
 
       &.NotificationsCountHover {
         transition-duration: 0.5s;

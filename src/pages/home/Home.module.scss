@@ -1,0 +1,9 @@
+@import '../../constants/main';
+
+.Wrapper {
+  height: calc(100vh - $navbar-height);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

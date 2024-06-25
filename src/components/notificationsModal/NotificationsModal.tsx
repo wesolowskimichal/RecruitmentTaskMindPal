@@ -17,11 +17,16 @@ export const NotificationsModal = ({ notificationsCount }: NotificationsModalPro
     return section === 'all' ? notifications : notifications.filter(notification => !notification.isRead)
   }, [notifications, section])
 
+  const getNotificationsCount = useMemo(
+    () => (notificationsCount > 99 ? '99+' : notificationsCount),
+    [notificationsCount]
+  )
+
   return (
     <div className={styles.Wrapper}>
       <header className={styles.NotificationsHeader}>
         <p className={styles.NotificationsHeaderInfo}>
-          Notifications <span className={styles.NotificationsCount}>{notificationsCount}</span>
+          Notifications <span className={styles.NotificationsCount}>{getNotificationsCount}</span>
         </p>
         <nav className={styles.SectionButtonsContainer}>
           <button

@@ -9,6 +9,7 @@
   background-color: $primary-color;
   width: $notifications-width;
   height: $notifications-height;
+  border-radius: 1.5rem;
 
   .NotificationsHeader {
     display: flex;
@@ -29,8 +30,12 @@
         padding: 0.2em 0.6em;
         font-size: 0.4em;
         margin-left: 0.5em;
-        display: inline-block;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        margin-bottom: 1rem;
       }
     }
 
@@ -40,10 +45,10 @@
       justify-content: space-between;
 
       .SectionButton {
-        flex-basis: 30%;
+        width: fit-content;
         background-color: $primary-color;
         color: $text-color;
-        padding: 0.5rem;
+        padding: 10px 0.5rem;
         border: 2px solid $secondary-color;
         border-radius: 2rem;
         cursor: pointer;
@@ -63,8 +68,9 @@
       .MarkButton {
         border: none;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
+        gap: 0.3rem;
       }
     }
   }

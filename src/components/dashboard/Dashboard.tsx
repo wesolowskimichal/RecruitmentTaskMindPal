@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import styles from './Ui.module.scss'
+import styles from './Dashboard.module.scss'
 import { Notification } from '@/types/Types'
 import NotificationIcon from '@assets/notification-icon.svg'
 import { v4 as uuidv4 } from 'uuid'
@@ -15,18 +15,28 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/components/ui/drawer'
-import { Button } from '@/components/ui/button'
+import classNames from 'classnames'
 
-export const Ui = () => {
+export const Dashboard = () => {
   const { addNotification } = useNotification()
   const [type, setType] = useState<Notification['type']>('NewFeature')
   const [image, setImage] = useState<File | null>(null)
-  const [imagePreview, setImagePreview] = useState<string | undefined>(undefined)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [message, setMessage] = useState('')
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setType(event.target.value as Notification['type'])
   }
+
+  useEffect(() => {
+    if (!isDrawerOpen) {
+      setType('NewFeature')
+      setImage(null)
+      setImagePreview(null)
+      setMessage('')
+    }
+  }, [isDrawerOpen])
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -76,12 +86,15 @@ export const Ui = () => {
   }, [type, image, message])
 
   return (
-    <Drawer>
-      <DrawerTrigger className={styles.DrawerTrigger}>Add Notification</DrawerTrigger>
+    <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+      <DrawerTrigger className={styles.DrawerTrigger} onClick={() => setIsDrawerOpen(true)}>
+        Add Notification
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle className={styles.DrawerTitle}>Add Notification</DrawerTitle>
-          <DrawerDescription>
+          <DrawerDescription>Dashboard to add notification</DrawerDescription>
+          <>
             <div className={styles.Ui}>
               <div className={styles.UiElement}>
                 <h2>Notification Type</h2>
@@ -119,22 +132,27 @@ export const Ui = () => {
                 <h2>Message</h2>
                 <textarea value={message} onChange={handleMessageChange} />
               </div>
-              <div className={styles.UiElement}>
+              <div className={classNames(styles.UiElement, styles.ImageUpload)}>
                 <h2>Image</h2>
                 <img src={imagePreview ?? NotificationIcon} alt="Notification image" />
-                <input type="file" onChange={handleImageChange} />
+                <label htmlFor="file-upload" className={styles.FileUploadButton}>
+                  Select
+                </label>
+                <input id="file-upload" type="file" onChange={handleImageChange} />
               </div>
             </div>
-          </DrawerDescription>
+          </>
         </DrawerHeader>
-        <DrawerFooter>
-          <Button onClick={() => handleAddNotification()} className={styles.DrawerSubmit}>
-            Submit
-          </Button>
-          <DrawerClose>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
+        <DrawerFooter
+          onClick={() => {
+            handleAddNotification()
+            setIsDrawerOpen(false)
+          }}
+          className={styles.DrawerSubmit}
+        >
+          Submit
         </DrawerFooter>
+        <DrawerClose onClick={() => setIsDrawerOpen(false)}>Cancel</DrawerClose>
       </DrawerContent>
     </Drawer>
   )

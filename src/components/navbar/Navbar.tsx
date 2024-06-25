@@ -14,6 +14,11 @@ export const Navbar = () => {
     return notifications.filter(notification => !notification.isRead).length
   }, [notifications])
 
+  const getNotificationsCount = useMemo(
+    () => (notificationsCount > 99 ? '99+' : notificationsCount),
+    [notificationsCount]
+  )
+
   useEffect(() => {
     setNotificationsCount(getUnreadNotificationsCount)
   }, [notifications, getUnreadNotificationsCount])
@@ -38,7 +43,7 @@ export const Navbar = () => {
           <span
             className={`${styles.NotificationsCount} ${isNotificationsButtonOnHover && styles.NotificationsCountHover}`}
           >
-            {notificationsCount}
+            {getNotificationsCount}
           </span>
         )}
       </div>
