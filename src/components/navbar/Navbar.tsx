@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { NotificationsModal } from '@components/notificationsModal'
 import { useNotification } from '@/context/NotificationContext'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import bellIcon from '@assets/bell-icon.svg'
 import styles from './Navbar.module.scss'
 
@@ -22,6 +23,38 @@ export const Navbar = () => {
   useEffect(() => {
     setNotificationsCount(getUnreadNotificationsCount)
   }, [notifications, getUnreadNotificationsCount])
+
+  return (
+    <header className={styles.Navbar}>
+      <h1>
+        <a href="/">Michał Wesołowski</a>
+      </h1>
+      <Popover>
+        <div className={styles.Notifications}>
+          <PopoverTrigger
+            className={styles.NotificationButton}
+            onClick={() => setIsNotificationsModalVisible(prev => !prev)}
+            onMouseEnter={() => setIsNotificationsButtonOnHover(true)}
+            onMouseLeave={() => setIsNotificationsButtonOnHover(false)}
+          >
+            <img src={bellIcon} alt="Notifications" />
+            {notificationsCount > 0 && (
+              <span
+                className={`${styles.NotificationsCount} ${
+                  isNotificationsButtonOnHover && styles.NotificationsCountHover
+                }`}
+              >
+                {getNotificationsCount}
+              </span>
+            )}
+          </PopoverTrigger>
+          <PopoverContent align="end" className={styles.PopoverContent}>
+            <NotificationsModal notificationsCount={notificationsCount} />
+          </PopoverContent>
+        </div>
+      </Popover>
+    </header>
+  )
 
   return (
     <header className={styles.Navbar}>

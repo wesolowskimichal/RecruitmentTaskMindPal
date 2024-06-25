@@ -1,6 +1,15 @@
 @import '../../constants/variables.module';
 @import '../../constants/colors.module';
 
+.PopoverContent {
+  width: $notifications-width !important;
+  height: $notifications-height;
+  overflow: hidden !important;
+  border: 2px solid $secondary-color !important;
+  border-radius: 1.5rem !important;
+  background-color: $primary-color !important;
+}
+
 .Navbar {
   width: 100%;
   height: $navbar-height;
@@ -18,36 +27,34 @@
   }
 
   .Notifications {
-    position: relative;
-
-    .NotificationsCount {
-      position: absolute;
-      background-color: $primary-color;
-      right: 0;
-      top: 0;
-      transform: translate(30%, -50%);
-      color: $secondary-color;
-      border-radius: 50%;
-      padding: 0.2rem;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 0.85rem;
-
-      &.NotificationsCountHover {
-        transition-duration: 0.5s;
-        color: $primary-color;
-        background-color: $secondary-color;
-      }
-    }
-
     .NotificationButton {
       padding: 0.4rem;
       border-radius: 1rem;
       background-color: $primary-color;
       border: 2px solid $secondary-color;
+
+      .NotificationsCount {
+        position: absolute;
+        background-color: $secondary-color;
+        right: 0;
+        top: 0;
+        transform: translate(-50%, 0);
+        color: $primary-color;
+        border-radius: 50%;
+        padding: 0.2rem;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.85rem;
+
+        &.NotificationsCountHover {
+          transition-duration: 0.5s;
+          color: $primary-color;
+          background-color: $secondary-color;
+        }
+      }
 
       &:hover {
         cursor: pointer;

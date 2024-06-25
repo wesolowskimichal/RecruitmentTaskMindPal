@@ -2,14 +2,7 @@
 @import '../../constants/variables.module';
 
 .Wrapper {
-  position: absolute;
-  border: 2px solid $secondary-color;
-  padding: 1rem;
-  transform: translateX(calc($notifications-width * -1 + 40px));
-  background-color: $primary-color;
-  width: $notifications-width;
   height: $notifications-height;
-  border-radius: 1.5rem;
 
   .NotificationsHeader {
     display: flex;
@@ -80,6 +73,6 @@
     flex-wrap: wrap;
     row-gap: 0.5rem;
     overflow-y: auto;
-    max-height: calc($notifications-height - 180px);
+    max-height: calc($notifications-height - 160px);
   }
 }
