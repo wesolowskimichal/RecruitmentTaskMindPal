@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
-import { Notification as NotificationType } from '../../types/Types'
-import { Page } from '../page/Page'
+import { Notification as NotificationType } from '@types/Types'
+import { Page } from '@/pages/page'
 import { useEffect, useState } from 'react'
-import { useNotification } from '../../context/NotificationContext'
-import { DateToReadableFormat } from '../../helpers/DateToReadableFormat'
+import { useNotification } from '@/context/NotificationContext'
+import { DateToReadableFormat } from '@helpers/DateToReadableFormat'
 import styles from './Notification.module.scss'
 
 type NotificationUrlParams = {

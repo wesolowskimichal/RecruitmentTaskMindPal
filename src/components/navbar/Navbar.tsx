@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
+import { NotificationsModal } from '@components/notificationsModal'
+import { useNotification } from '@/context/NotificationContext'
+import bellIcon from '@assets/bell-icon.svg'
 import styles from './Navbar.module.scss'
-import bellIcon from '../../assets/bell-icon.svg'
-import { NotificationsModal } from '../notificationsModal/NotificationsModal'
-import { useNotification } from '../../context/NotificationContext'
 
 export const Navbar = () => {
   const { notifications } = useNotification()
@@ -45,3 +45,5 @@ export const Navbar = () => {
     </header>
   )
 }
+
+export default Navbar

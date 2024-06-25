@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import { useNotification } from '../../context/NotificationContext'
-import { DateToReadableFormat } from '../../helpers/DateToReadableFormat'
-import { Notification as NotificationType } from '../../types/Types'
+import { useNotification } from '@/context/NotificationContext'
+import { DateToReadableFormat } from '@helpers/DateToReadableFormat'
+import { Notification as NotificationType } from '@types/Types'
 import styles from './Notification.module.scss'
 import classNames from 'classnames'
 
