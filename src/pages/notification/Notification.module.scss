@@ -7,4 +7,18 @@
   padding: 1rem;
   border-radius: 2rem;
   max-width: 60%;
+  padding: 1rem;
+
+  h1 {
+    border-bottom: 1px solid $text-color;
+  }
+
+  p {
+    padding: 0.5rem;
+  }
+
+  p:nth-of-type(2) {
+    color: lighten($color: $text-color, $amount: 25);
+    font-size: 12px;
+  }
 }
