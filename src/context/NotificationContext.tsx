@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useEffect, useState, FC, useContext } from 'react'
-import { Notification } from '@types/Types'
+import { Notification } from '@/types/Types'
 
 type NotificationContextType = {
   notifications: Notification[]

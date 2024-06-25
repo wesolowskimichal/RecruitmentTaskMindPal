@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import styles from './NotificationsModal.module.scss'
 import markAllIcon from '@assets/mark-all-icon.svg'
-import { NotificationModalType } from '@types/Types'
+import { NotificationModalType } from '@/types/Types'
 import { Notification as NotificationView } from '@components/notification/'
 import { useNotification } from '@/context/NotificationContext'
 

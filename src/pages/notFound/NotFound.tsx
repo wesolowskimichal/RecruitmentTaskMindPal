@@ -1,4 +1,4 @@
-import { Page } from '@/pages/page'
+import { Page } from '@pages/page'
 import styles from './NotFound.module.scss'
 
 export const NotFound = () => {

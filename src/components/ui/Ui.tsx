@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import styles from './Ui.module.scss'
-import { Notification } from '@types/Types'
+import { Notification } from '@/types/Types'
 import NotificationIcon from '@assets/notification-icon.svg'
 import { v4 as uuidv4 } from 'uuid'
-import { useNotification } from '@/context/NotificationContext'
+import { useNotification } from '@context/NotificationContext'
 import { FileToBase64 } from '@helpers/FileToBase64'
 import {
   Drawer,
@@ -76,7 +76,7 @@ export const Ui = () => {
   }, [type, image, message])
 
   return (
-    <Drawer className={styles.Drawer}>
+    <Drawer>
       <DrawerTrigger className={styles.DrawerTrigger}>Add Notification</DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
@@ -137,55 +137,5 @@ export const Ui = () => {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  )
-
-  return (
-    <div className={styles.Ui}>
-      <h1>Add Notification</h1>
-      <div className={styles.UiElement}>
-        <h2>Notification Type</h2>
-        <input
-          type="checkbox"
-          id="request"
-          name="type"
-          value="Request"
-          checked={type === 'Request'}
-          onChange={handleTypeChange}
-        />
-        <label htmlFor="request">Request</label>
-
-        <input
-          type="checkbox"
-          id="statusChangeToOnHold"
-          name="type"
-          value="StatusChangeToOnHold"
-          checked={type === 'StatusChangeToOnHold'}
-          onChange={handleTypeChange}
-        />
-        <label htmlFor="statusChangeToOnHold">Status Change To On Hold</label>
-
-        <input
-          type="checkbox"
-          id="newFeature"
-          name="type"
-          value="NewFeature"
-          checked={type === 'NewFeature'}
-          onChange={handleTypeChange}
-        />
-        <label htmlFor="newFeature">New Feature</label>
-      </div>
-      <div className={styles.UiElement}>
-        <h2>Message</h2>
-        <textarea value={message} onChange={handleMessageChange} />
-      </div>
-      <div className={styles.UiElement}>
-        <h2>Image</h2>
-        <img src={imagePreview ?? NotificationIcon} alt="Notification image" />
-        <input type="file" onChange={handleImageChange} />
-      </div>
-      <button onClick={() => handleAddNotification()} className={styles.AddButton}>
-        ADD
-      </button>
-    </div>
   )
 }
