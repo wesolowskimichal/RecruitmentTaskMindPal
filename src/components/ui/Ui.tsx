@@ -5,6 +5,17 @@ import NotificationIcon from '../../assets/notification-icon.svg'
 import { v4 as uuidv4 } from 'uuid'
 import { useNotification } from '../../context/NotificationContext'
 import { FileToBase64 } from '../../helpers/FileToBase64'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger
+} from '@/components/ui/drawer'
+import { Button } from '@/components/ui/button'
 
 export const Ui = () => {
   const { addNotification } = useNotification()
@@ -63,6 +74,70 @@ export const Ui = () => {
 
     addNotification(notification)
   }, [type, image, message])
+
+  return (
+    <Drawer className={styles.Drawer}>
+      <DrawerTrigger className={styles.DrawerTrigger}>Add Notification</DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle className={styles.DrawerTitle}>Add Notification</DrawerTitle>
+          <DrawerDescription>
+            <div className={styles.Ui}>
+              <div className={styles.UiElement}>
+                <h2>Notification Type</h2>
+                <input
+                  type="checkbox"
+                  id="request"
+                  name="type"
+                  value="Request"
+                  checked={type === 'Request'}
+                  onChange={handleTypeChange}
+                />
+                <label htmlFor="request">Request</label>
+
+                <input
+                  type="checkbox"
+                  id="statusChangeToOnHold"
+                  name="type"
+                  value="StatusChangeToOnHold"
+                  checked={type === 'StatusChangeToOnHold'}
+                  onChange={handleTypeChange}
+                />
+                <label htmlFor="statusChangeToOnHold">Status Change To On Hold</label>
+
+                <input
+                  type="checkbox"
+                  id="newFeature"
+                  name="type"
+                  value="NewFeature"
+                  checked={type === 'NewFeature'}
+                  onChange={handleTypeChange}
+                />
+                <label htmlFor="newFeature">New Feature</label>
+              </div>
+              <div className={styles.UiElement}>
+                <h2>Message</h2>
+                <textarea value={message} onChange={handleMessageChange} />
+              </div>
+              <div className={styles.UiElement}>
+                <h2>Image</h2>
+                <img src={imagePreview ?? NotificationIcon} alt="Notification image" />
+                <input type="file" onChange={handleImageChange} />
+              </div>
+            </div>
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <Button onClick={() => handleAddNotification()} className={styles.DrawerSubmit}>
+            Submit
+          </Button>
+          <DrawerClose>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  )
 
   return (
     <div className={styles.Ui}>

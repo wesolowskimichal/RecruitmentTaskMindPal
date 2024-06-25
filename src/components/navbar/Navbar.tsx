@@ -20,7 +20,9 @@ export const Navbar = () => {
 
   return (
     <header className={styles.Navbar}>
-      <h1>Michał Wesołowski</h1>
+      <h1>
+        <a href="/">Michał Wesołowski</a>
+      </h1>
       <div className={styles.Notifications}>
         <button
           className={styles.NotificationButton}
