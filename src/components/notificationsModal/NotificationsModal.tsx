@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './NotificationsModal.module.scss'
 import markAllIcon from '@assets/mark-all-icon.svg'
 import { NotificationModalType } from '@/types/Types'
@@ -12,6 +12,14 @@ type NotificationsModalProps = {
 export const NotificationsModal = ({ notificationsCount }: NotificationsModalProps) => {
   const { notifications, markAllAsRead } = useNotification()
   const [section, setSection] = useState<NotificationModalType>('all')
+  const headerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (headerRef.current) {
+      const headerHeight = headerRef.current.offsetHeight
+      document.documentElement.style.setProperty('--header-height', `${headerHeight}px`)
+    }
+  }, [headerRef.current?.offsetHeight])
 
   const notificationsToShow = useMemo(() => {
     return section === 'all' ? notifications : notifications.filter(notification => !notification.isRead)
@@ -24,7 +32,7 @@ export const NotificationsModal = ({ notificationsCount }: NotificationsModalPro
 
   return (
     <div className={styles.Wrapper}>
-      <header className={styles.NotificationsHeader}>
+      <header className={styles.NotificationsHeader} ref={headerRef}>
         <p className={styles.NotificationsHeaderInfo}>
           Notifications <span className={styles.NotificationsCount}>{getNotificationsCount}</span>
         </p>

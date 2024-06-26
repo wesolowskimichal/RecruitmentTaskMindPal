@@ -56,10 +56,6 @@ export const Dashboard = () => {
   }
 
   useEffect(() => {
-    console.log(type)
-  }, [type])
-
-  useEffect(() => {
     return () => {
       if (imagePreview) {
         URL.revokeObjectURL(imagePreview)

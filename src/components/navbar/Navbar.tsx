@@ -55,33 +55,4 @@ export const Navbar = () => {
       </Popover>
     </header>
   )
-
-  return (
-    <header className={styles.Navbar}>
-      <h1>
-        <a href="/">Michał Wesołowski</a>
-      </h1>
-      <div className={styles.Notifications}>
-        <button
-          className={styles.NotificationButton}
-          onClick={() => setIsNotificationsModalVisible(prev => !prev)}
-          onMouseEnter={() => setIsNotificationsButtonOnHover(true)}
-          onMouseLeave={() => setIsNotificationsButtonOnHover(false)}
-        >
-          <img src={bellIcon} alt="Notifications" />
-        </button>
-        {isNotificationsModalVisible ? (
-          <NotificationsModal notificationsCount={notificationsCount} />
-        ) : (
-          <span
-            className={`${styles.NotificationsCount} ${isNotificationsButtonOnHover && styles.NotificationsCountHover}`}
-          >
-            {getNotificationsCount}
-          </span>
-        )}
-      </div>
-    </header>
-  )
 }
-
-export default Navbar

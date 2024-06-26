@@ -68,3 +68,18 @@
     }
   }
 }
+
+@media (max-width: $notifications-width) {
+  .PopoverContent {
+    width: 320px !important;
+    height: auto;
+    border: 1px solid $secondary-color !important;
+    border-radius: 1rem !important;
+  }
+}
+
+@media (max-height: $notifications-width) {
+  .PopoverContent {
+    height: 100%;
+  }
+}

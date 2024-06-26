@@ -23,12 +23,32 @@
 
   &ContentWrapper {
     flex-grow: 1;
+    width: calc(100% - 5rem - 20px);
     display: flex;
     flex-direction: column;
+    max-height: 100%;
 
     .NotificationMessage {
       height: 75%;
       text-align: left;
+      overflow: auto;
+      word-break: break-all;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: #e7e7e7;
+        border: 1px solid #cacaca;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: $secondary-color;
+      }
     }
 
     .NotificationDate {
