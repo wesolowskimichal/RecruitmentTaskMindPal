@@ -7,6 +7,7 @@ type NotificationContextType = {
   markAsReadById: (id: string) => void
   getById: (id: string) => Notification | null
   addNotification: (notification: Notification) => void
+  clearNotifications: () => void
 }
 
 const NotificationContext = createContext<NotificationContextType>({
@@ -14,7 +15,8 @@ const NotificationContext = createContext<NotificationContextType>({
   markAllAsRead: () => {},
   markAsReadById: (id: string) => {},
   getById: (id: string) => null,
-  addNotification: (notification: Notification) => {}
+  addNotification: (notification: Notification) => {},
+  clearNotifications: () => {}
 })
 
 const getLocalNotifications = (): Notification[] => {
@@ -51,8 +53,14 @@ export const NotificationContextProvider: FC<{ children: ReactNode }> = ({ child
     setNotifications(prev => [notification, ...prev])
   }
 
+  const clearNotifications = () => {
+    localStorage.removeItem('notifications')
+  }
+
   return (
-    <NotificationContext.Provider value={{ notifications, markAllAsRead, markAsReadById, getById, addNotification }}>
+    <NotificationContext.Provider
+      value={{ notifications, markAllAsRead, markAsReadById, getById, addNotification, clearNotifications }}
+    >
       {children}
     </NotificationContext.Provider>
   )

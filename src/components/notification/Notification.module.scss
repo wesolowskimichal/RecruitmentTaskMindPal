@@ -32,7 +32,7 @@
       height: 75%;
       text-align: left;
       overflow: auto;
-      word-break: break-all;
+      word-break: break-word;
 
       &::-webkit-scrollbar {
         width: 5px;
