@@ -16,7 +16,7 @@ import {
   DrawerTrigger
 } from '@/components/ui/drawer'
 import classNames from 'classnames'
-import data from '../../data/ExampleData.json'
+import data from '@/data/ExampleData.json'
 
 export const Dashboard = () => {
   const { addNotification, clearNotifications } = useNotification()

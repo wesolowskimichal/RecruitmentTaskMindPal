@@ -15,7 +15,8 @@
       "@hooks/*": ["hooks/*"],
       "@assets/*": ["assets/*"],
       "@pages/*": ["pages/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@data/'*": ["data/*"]
     },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
